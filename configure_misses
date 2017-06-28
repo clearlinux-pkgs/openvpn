@@ -57,8 +57,4 @@ Configure miss: RSA_meth_set_priv_dec
 Configure miss: RSA_meth_set_init
 Configure miss: RSA_meth_set_finish
 Configure miss: RSA_meth_set0_app_data
-Configure miss: LZ4_compress in -llz4
-Configure miss: lz4.h usability
-Configure miss: lz4.h presence
-Configure miss: lz4.h
 Configure miss: git checkout

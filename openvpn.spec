@@ -6,7 +6,7 @@
 #
 Name     : openvpn
 Version  : 2.4.3
-Release  : 2
+Release  : 3
 URL      : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz
 Source0  : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz
 Source99 : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz.asc
@@ -19,6 +19,7 @@ Requires: openvpn-doc
 BuildRequires : Linux-PAM-dev
 BuildRequires : cmake
 BuildRequires : iproute2
+BuildRequires : lz4-dev
 BuildRequires : pkgconfig(libcrypto)
 BuildRequires : pkgconfig(libpkcs11-helper-1)
 BuildRequires : pkgconfig(libsystemd)
@@ -79,7 +80,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1498662505
+export SOURCE_DATE_EPOCH=1498663013
 %configure --disable-static --enable-iproute2
 make V=1  %{?_smp_mflags}
 
@@ -91,7 +92,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1498662505
+export SOURCE_DATE_EPOCH=1498663013
 rm -rf %{buildroot}
 %make_install
 
