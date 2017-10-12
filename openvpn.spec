@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD72AF3448CC2B034 (security@openvpn.net)
 #
 Name     : openvpn
-Version  : 2.4.3
-Release  : 3
-URL      : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz
-Source0  : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz
-Source99 : https://swupdate.openvpn.org/community/releases/openvpn-2.4.3.tar.xz.asc
+Version  : 2.4.4
+Release  : 4
+URL      : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
+Source0  : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
+Source99 : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -21,6 +21,7 @@ BuildRequires : cmake
 BuildRequires : iproute2
 BuildRequires : lz4-dev
 BuildRequires : pkgconfig(libcrypto)
+BuildRequires : pkgconfig(liblz4)
 BuildRequires : pkgconfig(libpkcs11-helper-1)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(lzo2)
@@ -73,14 +74,14 @@ lib components for the openvpn package.
 
 
 %prep
-%setup -q -n openvpn-2.4.3
+%setup -q -n openvpn-2.4.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1498663013
+export SOURCE_DATE_EPOCH=1507844720
 %configure --disable-static --enable-iproute2
 make V=1  %{?_smp_mflags}
 
@@ -92,7 +93,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1498663013
+export SOURCE_DATE_EPOCH=1507844720
 rm -rf %{buildroot}
 %make_install
 

@@ -42,6 +42,7 @@ Configure miss: X509_OBJECT_free
 Configure miss: X509_OBJECT_get_type
 Configure miss: EVP_PKEY_get0_RSA
 Configure miss: EVP_PKEY_get0_DSA
+Configure miss: EVP_PKEY_get0_EC_KEY
 Configure miss: RSA_set_flags
 Configure miss: RSA_bits
 Configure miss: RSA_get0_key
@@ -57,4 +58,5 @@ Configure miss: RSA_meth_set_priv_dec
 Configure miss: RSA_meth_set_init
 Configure miss: RSA_meth_set_finish
 Configure miss: RSA_meth_set0_app_data
+Configure miss: EC_GROUP_order_bits
 Configure miss: git checkout
