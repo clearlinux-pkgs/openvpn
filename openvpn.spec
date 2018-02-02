@@ -6,7 +6,7 @@
 #
 Name     : openvpn
 Version  : 2.4.4
-Release  : 4
+Release  : 5
 URL      : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
 Source0  : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
 Source99 : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz.asc
