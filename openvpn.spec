@@ -6,7 +6,7 @@
 #
 Name     : openvpn
 Version  : 2.4.4
-Release  : 6
+Release  : 7
 URL      : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
 Source0  : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz
 Source99 : https://swupdate.openvpn.org/community/releases/openvpn-2.4.4.tar.xz.asc
@@ -14,8 +14,10 @@ Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: openvpn-bin
+Requires: openvpn-config
 Requires: openvpn-lib
-Requires: openvpn-doc
+Requires: openvpn-license
+Requires: openvpn-man
 BuildRequires : Linux-PAM-dev
 BuildRequires : cmake
 BuildRequires : iproute2
@@ -41,9 +43,20 @@ and portability to most major OS platforms.
 %package bin
 Summary: bin components for the openvpn package.
 Group: Binaries
+Requires: openvpn-config
+Requires: openvpn-license
+Requires: openvpn-man
 
 %description bin
 bin components for the openvpn package.
+
+
+%package config
+Summary: config components for the openvpn package.
+Group: Default
+
+%description config
+config components for the openvpn package.
 
 
 %package dev
@@ -60,6 +73,7 @@ dev components for the openvpn package.
 %package doc
 Summary: doc components for the openvpn package.
 Group: Documentation
+Requires: openvpn-man
 
 %description doc
 doc components for the openvpn package.
@@ -68,9 +82,26 @@ doc components for the openvpn package.
 %package lib
 Summary: lib components for the openvpn package.
 Group: Libraries
+Requires: openvpn-license
 
 %description lib
 lib components for the openvpn package.
+
+
+%package license
+Summary: license components for the openvpn package.
+Group: Default
+
+%description license
+license components for the openvpn package.
+
+
+%package man
+Summary: man components for the openvpn package.
+Group: Default
+
+%description man
+man components for the openvpn package.
 
 
 %prep
@@ -81,9 +112,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507844720
-%configure --disable-static --enable-iproute2
-make V=1  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1531430833
+%configure --disable-static --enable-iproute2 \
+--enable-systemd \
+SYSTEMD_UNIT_DIR=/usr/lib/systemd/system \
+TMPFILES_DIR=/usr/lib/tmpfiles.d
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -93,8 +127,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1507844720
+export SOURCE_DATE_EPOCH=1531430833
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/openvpn
+cp COPYING %{buildroot}/usr/share/doc/openvpn/COPYING
 %make_install
 
 %files
@@ -104,16 +140,30 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/bin/openvpn
 
+%files config
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/openvpn-client@.service
+/usr/lib/systemd/system/openvpn-server@.service
+/usr/lib/tmpfiles.d/openvpn.conf
+
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/openvpn/*
-%doc /usr/share/man/man8/*
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
 /usr/lib64/openvpn/plugins/openvpn-plugin-down-root.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/openvpn/COPYING
+/usr/share/doc/openvpn/COPYRIGHT.GPL
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man8/openvpn.8
