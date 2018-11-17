@@ -26,35 +26,5 @@ Configure miss: tap-windows.h usability
 Configure miss: tap-windows.h presence
 Configure miss: tap-windows.h
 Configure miss: setcon in -lselinux
-Configure miss: HMAC_CTX_new
-Configure miss: HMAC_CTX_free
-Configure miss: HMAC_CTX_reset
-Configure miss: EVP_MD_CTX_new
-Configure miss: EVP_MD_CTX_free
-Configure miss: EVP_MD_CTX_reset
-Configure miss: SSL_CTX_get_default_passwd_cb
-Configure miss: SSL_CTX_get_default_passwd_cb_userdata
-Configure miss: X509_get0_pubkey
-Configure miss: X509_STORE_get0_objects
-Configure miss: X509_OBJECT_free
-Configure miss: X509_OBJECT_get_type
-Configure miss: EVP_PKEY_get0_RSA
-Configure miss: EVP_PKEY_get0_DSA
-Configure miss: EVP_PKEY_get0_EC_KEY
-Configure miss: RSA_set_flags
-Configure miss: RSA_bits
-Configure miss: RSA_get0_key
-Configure miss: RSA_set0_key
-Configure miss: DSA_get0_pqg
-Configure miss: DSA_bits
-Configure miss: RSA_meth_new
-Configure miss: RSA_meth_free
-Configure miss: RSA_meth_set_pub_enc
-Configure miss: RSA_meth_set_pub_dec
-Configure miss: RSA_meth_set_priv_enc
-Configure miss: RSA_meth_set_priv_dec
-Configure miss: RSA_meth_set_init
-Configure miss: RSA_meth_set_finish
-Configure miss: RSA_meth_set0_app_data
-Configure miss: EC_GROUP_order_bits
+Configure miss: ENGINE_cleanup
 Configure miss: git checkout
