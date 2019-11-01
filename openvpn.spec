@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5DC351805ACFEAC6 (security@openvpn.net)
 #
 Name     : openvpn
-Version  : 2.4.7
-Release  : 9
-URL      : http://build.openvpn.net/downloads/releases/openvpn-2.4.7.tar.xz
-Source0  : http://build.openvpn.net/downloads/releases/openvpn-2.4.7.tar.xz
-Source99 : http://build.openvpn.net/downloads/releases/openvpn-2.4.7.tar.xz.asc
+Version  : 2.4.8
+Release  : 10
+URL      : http://build.openvpn.net/downloads/releases/openvpn-2.4.8.tar.xz
+Source0  : http://build.openvpn.net/downloads/releases/openvpn-2.4.8.tar.xz
+Source1 : http://build.openvpn.net/downloads/releases/openvpn-2.4.8.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -30,21 +30,21 @@ BuildRequires : pkgconfig(lzo2)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(systemd)
 BuildRequires : sed
+BuildRequires : util-linux
 
 %description
-OpenVPN is a robust and highly flexible VPN daemon by James Yonan.
-OpenVPN supports SSL/TLS security,
-ethernet bridging,
-TCP or UDP tunnel transport through proxies or NAT,
-support for dynamic IP addresses and DHCP,
-scalability to hundreds or thousands of users,
-and portability to most major OS platforms.
+OpenVPN Plugins
+---------------
+Starting with OpenVPN 2.0-beta17, compiled plugin modules are
+supported on any *nix OS which includes libdl or on Windows.
+One or more modules may be loaded into OpenVPN using
+the --plugin directive, and each plugin module is capable of
+intercepting any of the script callbacks which OpenVPN supports:
 
 %package bin
 Summary: bin components for the openvpn package.
 Group: Binaries
 Requires: openvpn-config = %{version}-%{release}
-Requires: openvpn-man = %{version}-%{release}
 Requires: openvpn-services = %{version}-%{release}
 
 %description bin
@@ -65,6 +65,7 @@ Group: Development
 Requires: openvpn-lib = %{version}-%{release}
 Requires: openvpn-bin = %{version}-%{release}
 Provides: openvpn-devel = %{version}-%{release}
+Requires: openvpn = %{version}-%{release}
 Requires: openvpn = %{version}-%{release}
 
 %description dev
@@ -105,14 +106,23 @@ services components for the openvpn package.
 
 
 %prep
-%setup -q -n openvpn-2.4.7
+%setup -q -n openvpn-2.4.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1550687505
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1572623635
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --enable-iproute2 \
 --enable-systemd \
 SYSTEMD_UNIT_DIR=/usr/lib/systemd/system \
@@ -120,14 +130,14 @@ TMPFILES_DIR=/usr/lib/tmpfiles.d
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1550687505
+export SOURCE_DATE_EPOCH=1572623635
 rm -rf %{buildroot}
 %make_install
 
@@ -144,7 +154,8 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/openvpn-msg.h
+/usr/include/openvpn-plugin.h
 
 %files doc
 %defattr(0644,root,root,0755)

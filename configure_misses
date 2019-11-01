@@ -2,6 +2,7 @@ Configure miss: ifconfig
 Configure miss: route
 Configure miss: netstat
 Configure miss: man2html
+Configure miss: windres
 Configure miss: direct.h usability
 Configure miss: direct.h presence
 Configure miss: winsock2.h usability
@@ -12,6 +13,9 @@ Configure miss: ws2tcpip.h
 Configure miss: versionhelpers.h usability
 Configure miss: versionhelpers.h presence
 Configure miss: versionhelpers.h
+Configure miss: stropts.h usability
+Configure miss: stropts.h presence
+Configure miss: stropts.h
 Configure miss: net/if_utun.h
 Configure miss: sys/kern_control.h
 Configure miss: struct sock_extended_err
