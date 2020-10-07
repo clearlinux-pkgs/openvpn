@@ -1,5 +1,5 @@
 PKG_NAME := openvpn
-URL = http://build.openvpn.net/downloads/releases/openvpn-2.4.8.tar.xz
+URL = https://github.com/OpenVPN/openvpn/archive/v2.4.9/openvpn-2.4.9.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
