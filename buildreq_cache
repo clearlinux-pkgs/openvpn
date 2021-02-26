@@ -1,3 +1,4 @@
-2.4.9
+2.5.1
 Linux-PAM-dev
-cmake
+docutils
+openssl-dev
