@@ -4,6 +4,7 @@ Configure miss: chsize
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: git checkout
 Configure miss: ifconfig
+Configure miss: inet_ntoa in -lnsl
 Configure miss: net/if_tun.h
 Configure miss: net/if_utun.h
 Configure miss: net/tun/if_tun.h
