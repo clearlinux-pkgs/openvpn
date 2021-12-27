@@ -1,20 +1,40 @@
 Configure miss: ENGINE_cleanup
+Configure miss: ENGINE_cleanup
+Configure miss: SSL_CTX_set1_groups
 Configure miss: SSL_CTX_set1_groups
 Configure miss: chsize
+Configure miss: chsize
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: git checkout
+Configure miss: git checkout
+Configure miss: ifconfig
 Configure miss: ifconfig
 Configure miss: inet_ntoa in -lnsl
+Configure miss: inet_ntoa in -lnsl
+Configure miss: net/if_tun.h
 Configure miss: net/if_tun.h
 Configure miss: net/if_utun.h
+Configure miss: net/if_utun.h
+Configure miss: net/tun/if_tun.h
 Configure miss: net/tun/if_tun.h
 Configure miss: netstat
+Configure miss: netstat
+Configure miss: route
 Configure miss: route
 Configure miss: setcon in -lselinux
+Configure miss: setcon in -lselinux
+Configure miss: stropts.h
 Configure miss: stropts.h
 Configure miss: struct sock_extended_err
+Configure miss: struct sock_extended_err
+Configure miss: sys/kern_control.h
 Configure miss: sys/kern_control.h
 Configure miss: tap-windows.h
+Configure miss: tap-windows.h
+Configure miss: versionhelpers.h
 Configure miss: versionhelpers.h
 Configure miss: windres
+Configure miss: windres
+Configure miss: ws2tcpip.h
 Configure miss: ws2tcpip.h
