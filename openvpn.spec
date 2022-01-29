@@ -4,7 +4,7 @@
 #
 Name     : openvpn
 Version  : 2.5.5
-Release  : 16
+Release  : 17
 URL      : https://github.com/OpenVPN/openvpn/archive/v2.5.5/openvpn-2.5.5.tar.gz
 Source0  : https://github.com/OpenVPN/openvpn/archive/v2.5.5/openvpn-2.5.5.tar.gz
 Summary  : No detailed summary available
