@@ -26,8 +26,6 @@ Configure miss: setcon in -lselinux
 Configure miss: setcon in -lselinux
 Configure miss: stropts.h
 Configure miss: stropts.h
-Configure miss: struct sock_extended_err
-Configure miss: struct sock_extended_err
 Configure miss: sys/kern_control.h
 Configure miss: sys/kern_control.h
 Configure miss: tap-windows.h
