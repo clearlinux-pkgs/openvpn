@@ -4,7 +4,7 @@
 #
 Name     : openvpn
 Version  : 2.5.6
-Release  : 19
+Release  : 20
 URL      : https://github.com/OpenVPN/openvpn/archive/v2.5.6/openvpn-2.5.6.tar.gz
 Source0  : https://github.com/OpenVPN/openvpn/archive/v2.5.6/openvpn-2.5.6.tar.gz
 Summary  : No detailed summary available
@@ -18,7 +18,6 @@ Requires: openvpn-license = %{version}-%{release}
 Requires: openvpn-man = %{version}-%{release}
 Requires: openvpn-services = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
-BuildRequires : docutils
 BuildRequires : iproute2
 BuildRequires : lz4-dev
 BuildRequires : openssl-dev
@@ -30,6 +29,7 @@ BuildRequires : pkgconfig(lzo2)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(systemd)
+BuildRequires : pypi-docutils
 BuildRequires : sed
 
 %description
@@ -133,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1647455356
+export SOURCE_DATE_EPOCH=1649971943
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -168,7 +168,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1647455356
+export SOURCE_DATE_EPOCH=1649971943
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openvpn
 cp %{_builddir}/openvpn-2.5.6/COPYING %{buildroot}/usr/share/package-licenses/openvpn/6206f5c60a740675eeccce5d17b0533563b13dcb
