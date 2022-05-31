@@ -1,5 +1,3 @@
-Configure miss: ENGINE_cleanup
-Configure miss: ENGINE_cleanup
 Configure miss: SSL_CTX_set1_groups
 Configure miss: SSL_CTX_set1_groups
 Configure miss: chsize
