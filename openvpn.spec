@@ -4,7 +4,7 @@
 #
 Name     : openvpn
 Version  : 2.5.8
-Release  : 30
+Release  : 31
 URL      : https://github.com/OpenVPN/openvpn/archive/v2.5.8/openvpn-2.5.8.tar.gz
 Source0  : https://github.com/OpenVPN/openvpn/archive/v2.5.8/openvpn-2.5.8.tar.gz
 Summary  : No detailed summary available
