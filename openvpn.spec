@@ -5,7 +5,7 @@
 #
 Name     : openvpn
 Version  : 2.6.2
-Release  : 34
+Release  : 35
 URL      : https://github.com/OpenVPN/openvpn/archive/v2.6.2/openvpn-2.6.2.tar.gz
 Source0  : https://github.com/OpenVPN/openvpn/archive/v2.6.2/openvpn-2.6.2.tar.gz
 Summary  : No detailed summary available
@@ -13,7 +13,6 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: openvpn-bin = %{version}-%{release}
 Requires: openvpn-config = %{version}-%{release}
-Requires: openvpn-filemap = %{version}-%{release}
 Requires: openvpn-lib = %{version}-%{release}
 Requires: openvpn-man = %{version}-%{release}
 Requires: openvpn-services = %{version}-%{release}
@@ -47,7 +46,6 @@ Summary: bin components for the openvpn package.
 Group: Binaries
 Requires: openvpn-config = %{version}-%{release}
 Requires: openvpn-services = %{version}-%{release}
-Requires: openvpn-filemap = %{version}-%{release}
 
 %description bin
 bin components for the openvpn package.
@@ -82,18 +80,9 @@ Requires: openvpn-man = %{version}-%{release}
 doc components for the openvpn package.
 
 
-%package filemap
-Summary: filemap components for the openvpn package.
-Group: Default
-
-%description filemap
-filemap components for the openvpn package.
-
-
 %package lib
 Summary: lib components for the openvpn package.
 Group: Libraries
-Requires: openvpn-filemap = %{version}-%{release}
 
 %description lib
 lib components for the openvpn package.
@@ -110,6 +99,7 @@ man components for the openvpn package.
 %package services
 Summary: services components for the openvpn package.
 Group: Systemd services
+Requires: systemd
 
 %description services
 services components for the openvpn package.
@@ -127,12 +117,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680633877
+export SOURCE_DATE_EPOCH=1683072013
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %reconfigure --disable-static --enable-iproute2 \
 --enable-systemd \
 SYSTEMD_UNIT_DIR=/usr/lib/systemd/system \
@@ -162,7 +152,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1680633877
+export SOURCE_DATE_EPOCH=1683072013
 rm -rf %{buildroot}
 pushd ../buildavx2/
 %make_install_v3
@@ -175,8 +165,8 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/openvpn
 /usr/bin/openvpn
-/usr/share/clear/optimized-elf/bin*
 
 %files config
 %defattr(-,root,root,-)
@@ -189,17 +179,14 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/openvpn/*
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-openvpn
+/usr/share/doc/openvpn/*
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
+/V3/usr/lib64/openvpn/plugins/openvpn-plugin-down-root.so
 /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
 /usr/lib64/openvpn/plugins/openvpn-plugin-down-root.so
-/usr/share/clear/optimized-elf/other*
 
 %files man
 %defattr(0644,root,root,0755)
