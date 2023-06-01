@@ -5,7 +5,7 @@
 #
 Name     : openvpn
 Version  : 2.6.2
-Release  : 35
+Release  : 36
 URL      : https://github.com/OpenVPN/openvpn/archive/v2.6.2/openvpn-2.6.2.tar.gz
 Source0  : https://github.com/OpenVPN/openvpn/archive/v2.6.2/openvpn-2.6.2.tar.gz
 Summary  : No detailed summary available
@@ -117,7 +117,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683072013
+export SOURCE_DATE_EPOCH=1685581148
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -152,7 +152,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1683072013
+export SOURCE_DATE_EPOCH=1685581148
 rm -rf %{buildroot}
 pushd ../buildavx2/
 %make_install_v3
