@@ -4,10 +4,10 @@
 # Using build pattern: configure_ac
 #
 Name     : openvpn
-Version  : 2.6.5
-Release  : 37
-URL      : https://github.com/OpenVPN/openvpn/archive/v2.6.5/openvpn-2.6.5.tar.gz
-Source0  : https://github.com/OpenVPN/openvpn/archive/v2.6.5/openvpn-2.6.5.tar.gz
+Version  : 2.6.6
+Release  : 38
+URL      : https://github.com/OpenVPN/openvpn/archive/v2.6.6/openvpn-2.6.6.tar.gz
+Source0  : https://github.com/OpenVPN/openvpn/archive/v2.6.6/openvpn-2.6.6.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -106,10 +106,10 @@ services components for the openvpn package.
 
 
 %prep
-%setup -q -n openvpn-2.6.5
-cd %{_builddir}/openvpn-2.6.5
+%setup -q -n openvpn-2.6.6
+cd %{_builddir}/openvpn-2.6.6
 pushd ..
-cp -a openvpn-2.6.5 buildavx2
+cp -a openvpn-2.6.6 buildavx2
 popd
 
 %build
@@ -117,7 +117,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686670413
+export SOURCE_DATE_EPOCH=1692124353
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -152,7 +152,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1686670413
+export SOURCE_DATE_EPOCH=1692124353
 rm -rf %{buildroot}
 pushd ../buildavx2/
 %make_install_v3
