@@ -26,8 +26,6 @@ Configure miss: sys/kern_control.h
 Configure miss: sys/kern_control.h
 Configure miss: tap-windows.h
 Configure miss: tap-windows.h
-Configure miss: versionhelpers.h
-Configure miss: versionhelpers.h
 Configure miss: windres
 Configure miss: windres
 Configure miss: x86_64-generic-linux-gnu-file
